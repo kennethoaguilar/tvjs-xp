@@ -1,5 +1,3 @@
-import indicators from './indicators.js'
-
 // Extension's controller
 export default class Main {
 
@@ -8,8 +6,8 @@ export default class Main {
         this.dc = dc
 
         this.dc.ww.just('upload-module', {
-            id: 'indicator',
-            main: indicators.toString()
+            id: 'indicators',
+            main: Mod.toString()
         })
     }
 
