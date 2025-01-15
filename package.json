@@ -30,7 +30,7 @@
     "vuejs"
   ],
   "homepage": "https://github.com/tvjsx/trading-vue-js#readme",
-  "repository": "github:tvjsx/tvjs-xp",
+  "repository": "github:kennethoaguilar/tvjs-xp",
   "devDependencies": {
     "@babel/core": "^7.12.1",
     "@babel/plugin-transform-runtime": "^7.12.1",
