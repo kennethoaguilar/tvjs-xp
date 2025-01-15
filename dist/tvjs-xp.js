@@ -1,5 +1,5 @@
 /*!
- * TVJS Std Extension Pack - v0.4.0 - Wed Jan 15 2025
+ * TVJS Std Extension Pack - v0.5.0 - Wed Jan 15 2025
  *     https://github.com/tvjsx/tvjs-xp
  *     Copyright (c) 2020 c451 Code's All Right;
  *     Licensed under the MIT license
@@ -1621,6 +1621,7 @@ var grid_resize_Pack = {
 /* harmony default export */ function indicators(mod, se, lib) {
   // Add hook with extra debugging
   this.pre_env = function (id, s) {
+    console.log("Running Pre_Env");
     // src => input time-series
     // len => first parameter (length)
     // _id => generated id, should be underscored
@@ -1633,6 +1634,7 @@ var grid_resize_Pack = {
       for (var i = 0; i < len; i++) {
         sum = sum + src[i];
       }
+      console.log("Registered SMA2 indicator");
       // Return a new TS with a tf, defined by src
       return this.ts(sum / len, id, src.__tf__);
     };
