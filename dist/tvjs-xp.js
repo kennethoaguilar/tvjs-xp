@@ -1617,6 +1617,94 @@ var grid_resize_Pack = {
 };
 /* harmony default export */ const grid_resize = (grid_resize_Pack);
 
+;// ./src/extensions/indicators/indicators.js
+/* harmony default export */ function indicators(t, e, n) {
+  console.log('Module constructor called');
+
+  // Store references to verify we have them
+  this.mod = mod;
+  this.se = se;
+  this.lib = lib;
+
+  // Add hook with extra debugging
+  this.pre_env = function (id, s) {
+    console.log('pre_env called', {
+      id: id,
+      s: s
+    });
+
+    // Check if we can access se
+    console.log('se available in hook:', !!this.se);
+
+    // Try to inject the function
+    try {
+      this.se.std_plus.sma2 = function (src, len, _id, _tf) {
+        var id = this._tsid(_id, "sma2(".concat(len, ")"));
+        var sum = 0;
+        for (var i = 0; i < len; i++) {
+          sum = sum + src[i];
+        }
+        return this.ts(sum / len, id, src.__tf__);
+      };
+      console.log('Successfully injected sma2');
+    } catch (e) {
+      console.error('Failed to inject sma2:', e);
+    }
+  };
+
+  // Check if there are any scripts in the queue
+  console.log('Script queue:', se.queue);
+
+  // Check if any scripts are mapped
+  console.log('Script map:', Object.keys(se.map));
+}
+;// ./src/extensions/indicators/Lib1.js
+/* harmony default export */ function Lib1(id, se, env, lib) {}
+;// ./src/extensions/indicators/main.js
+
+
+
+
+
+// Extension's controller
+var indicators_main_Main = /*#__PURE__*/_createClass(function Main(tv, dc) {
+  _classCallCheck(this, Main);
+  this.widgets = {};
+  this.tv = tv;
+  this.dc = dc;
+  this.dc.ww.just('upload-module', {
+    id: 'indicator',
+    main: indicators.toString(),
+    // Mod = main module class (defined as a function)
+    Lib1: Lib1.toString()
+  });
+});
+
+;// ./build/indicators/indicators.js
+// -------- Production extension index ---------
+//      ! THIS FILE WAS AUTO-GENERATED !
+//
+// Do not commit this file, the final index is
+// compiled by the repo owner, use index_dev.js to
+// experiment: 'npm run compile'
+
+
+indicators_main_Main.__name__ = 'indicators';
+var indicators_widgets = {};
+var indicators_components = {};
+var indicators_overlays = {};
+var indicators_colorpacks = {};
+var indicators_skins = {};
+var indicators_Pack = {
+  widgets: indicators_widgets,
+  components: indicators_components,
+  overlays: indicators_overlays,
+  colorpacks: indicators_colorpacks,
+  skins: indicators_skins,
+  Main: indicators_main_Main
+};
+/* harmony default export */ const indicators_indicators = (indicators_Pack);
+
 ;// ./node_modules/babel-loader/lib/index.js!./node_modules/vue-loader/lib/loaders/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./src/extensions/legend-buttons/AddWin.vue?vue&type=template&id=2ed555ae&scoped=true
 var AddWinvue_type_template_id_2ed555ae_scoped_true_render = function render() {
   var _vm = this,
@@ -2361,9 +2449,11 @@ var settings_win_Pack = {
 
 
 
+
 var index_prod_Pack = {
   'chart-link': chart_link,
   'grid-resize': grid_resize,
+  'indicators': indicators_indicators,
   'legend-buttons': legend_buttons,
   'settings-win': settings_win
 };
